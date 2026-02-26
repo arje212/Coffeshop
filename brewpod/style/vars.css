@@ -1,0 +1,155 @@
+/* ================================
+   BREW POD — CSS VARIABLES & RESET
+   Edit colors/fonts here globally
+   ================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,900;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&display=swap');
+
+:root {
+  /* ── Brand Colors ── */
+  --cream:      #F6EDD9;
+  --cream2:     #EDE0C4;
+  --cream3:     #E2CFA8;
+  --brown:      #3A1F0E;
+  --brown-mid:  #7A4520;
+  --brown-lt:   #A0622D;
+  --gold:       #C8903A;
+  --gold2:      #E5B668;
+  --gold3:      #F2D49A;
+  --dark:       #1A0D06;
+  --white:      #FFFDF8;
+  --red:        #C0392B;
+  --green:      #27AE60;
+
+  /* ── Typography ── */
+  --font-display: 'Playfair Display', Georgia, serif;
+  --font-body:    'DM Sans', system-ui, sans-serif;
+
+  /* ── Spacing ── */
+  --nav-h:    72px;
+  --max-w:    1200px;
+  --radius:   16px;
+  --radius-sm:10px;
+  --radius-lg:24px;
+
+  /* ── Shadows ── */
+  --shadow-sm:  0 2px 10px rgba(58,31,14,.08);
+  --shadow-md:  0 6px 24px rgba(58,31,14,.12);
+  --shadow-lg:  0 16px 48px rgba(58,31,14,.16);
+
+  /* ── Transitions ── */
+  --t: .28s cubic-bezier(.4,0,.2,1);
+}
+
+/* ── RESET ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; font-size: 16px; }
+body {
+  background: var(--cream);
+  color: var(--brown);
+  font-family: var(--font-body);
+  line-height: 1.6;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+img { max-width: 100%; display: block; }
+a { text-decoration: none; color: inherit; }
+button { font-family: var(--font-body); cursor: pointer; }
+input, textarea, select { font-family: var(--font-body); }
+ul { list-style: none; }
+
+/* ── UTILITIES ── */
+.container { max-width: var(--max-w); margin: 0 auto; padding: 0 32px; }
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0,0,0,0); }
+
+/* ── PAGE WRAPPER ── */
+.page { padding-top: var(--nav-h); min-height: 100vh; }
+
+/* ── SECTION HEADER ── */
+.sec-head { text-align: center; margin-bottom: 52px; }
+.sec-eye {
+  display: inline-block;
+  font-size: .72rem; letter-spacing: .22em; text-transform: uppercase;
+  color: var(--gold); font-weight: 600; margin-bottom: 10px;
+}
+.sec-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+  font-weight: 700; color: var(--brown); line-height: 1.15;
+}
+
+/* ── BUTTONS ── */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  padding: 12px 26px; border-radius: 40px; border: none;
+  font-size: .9rem; font-weight: 600; letter-spacing: .02em;
+  transition: var(--t); cursor: pointer; white-space: nowrap;
+}
+.btn-brown {
+  background: var(--brown); color: var(--cream);
+  box-shadow: 0 4px 18px rgba(58,31,14,.22);
+}
+.btn-brown:hover { background: var(--brown-mid); transform: translateY(-2px); box-shadow: var(--shadow-lg); }
+
+.btn-gold {
+  background: var(--gold); color: var(--brown);
+  box-shadow: 0 4px 18px rgba(200,144,58,.3);
+}
+.btn-gold:hover { background: var(--gold2); transform: translateY(-2px); }
+
+.btn-outline {
+  background: transparent; color: var(--brown);
+  border: 1.5px solid rgba(58,31,14,.28);
+}
+.btn-outline:hover { border-color: var(--brown); background: rgba(58,31,14,.04); }
+
+.btn-ghost {
+  background: rgba(255,255,255,.1); color: var(--cream); border: 1px solid rgba(255,255,255,.15);
+}
+.btn-ghost:hover { background: rgba(255,255,255,.18); }
+
+.btn-sm { padding: 8px 18px; font-size: .8rem; }
+.btn-lg { padding: 15px 36px; font-size: 1rem; }
+
+/* ── BADGE / TAG ── */
+.badge {
+  display: inline-block; padding: 3px 10px; border-radius: 20px;
+  font-size: .65rem; font-weight: 700; letter-spacing: .07em; text-transform: uppercase;
+}
+.badge-red   { background: var(--red); color: #fff; }
+.badge-gold  { background: var(--gold); color: var(--brown); }
+.badge-brown { background: var(--brown); color: var(--cream); }
+.badge-green { background: var(--green); color: #fff; }
+
+/* ── STAR RATING ── */
+.stars { color: var(--gold); font-size: .9rem; letter-spacing: .05em; }
+
+/* ── TOAST NOTIFICATION ── */
+.toast-wrap {
+  position: fixed; bottom: 28px; left: 50%; transform: translateX(-50%);
+  z-index: 9999; display: flex; flex-direction: column; gap: 8px; pointer-events: none;
+}
+.toast {
+  background: var(--brown); color: var(--cream);
+  padding: 12px 22px; border-radius: 40px; font-size: .86rem; font-weight: 600;
+  box-shadow: var(--shadow-lg); opacity: 0; transform: translateY(16px);
+  transition: opacity .3s, transform .3s; pointer-events: none;
+}
+.toast.show { opacity: 1; transform: translateY(0); }
+
+/* ── SCROLL REVEAL ── */
+.reveal { opacity: 0; transform: translateY(24px); transition: opacity .6s ease, transform .6s ease; }
+.reveal.vis { opacity: 1; transform: translateY(0); }
+
+/* ── OVERLAY ── */
+.overlay {
+  position: fixed; inset: 0; background: rgba(26,13,6,.5);
+  backdrop-filter: blur(4px); z-index: 400;
+  opacity: 0; pointer-events: none; transition: opacity .3s;
+}
+.overlay.on { opacity: 1; pointer-events: all; }
+
+/* ── RESPONSIVE NAV HIDE ── */
+@media (max-width: 860px) {
+  .container { padding: 0 18px; }
+}

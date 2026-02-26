@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Menu — Brew Pod Coffee House</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>☕</text></svg>"/>
+  <link rel="stylesheet" href="vars.css"/>
+  <link rel="stylesheet" href="nav.css"/>
+  <link rel="stylesheet" href="home.css"/>
+  <link rel="stylesheet" href="pages.css"/>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar" id="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">
+      <div class="logo-mark">☕</div>
+      Brew Pod <em>&nbsp;&</em>&nbsp;Co.
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="menu.html" class="active">Menu</a></li>
+      <li><a href="reserve.html">Reserve</a></li>
+      <li><a href="about.html">About</a></li>
+    </ul>
+    <div class="nav-right">
+      <button class="nav-icon-btn" id="cartBtn" title="Cart">
+        🛒 <span class="cart-badge">0</span>
+      </button>
+      <button class="nav-reserve-btn" onclick="location.href='reserve.html'">Reserve a Table</button>
+      <button class="nav-burger" id="burgerBtn">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+<div class="nav-drawer" id="navDrawer">
+  <a href="index.html">🏠 Home</a>
+  <a href="menu.html">☕ Menu</a>
+  <a href="reserve.html">📅 Reserve</a>
+  <a href="about.html">ℹ️ About</a>
+</div>
+<div class="overlay" id="overlay"></div>
+<aside class="cart-sidebar" id="cartSidebar">
+  <div class="cart-head"><h2>🛒 Your Cart</h2><button class="cart-close" id="cartClose">✕</button></div>
+  <div class="cart-body" id="cartBody"></div>
+  <div class="cart-foot" id="cartFoot" style="display:none">
+    <div class="cart-subtotal"><span>Subtotal</span><span id="cartSubtotal">₱0.00</span></div>
+    <div class="cart-note">🚚 Free delivery on orders above ₱500</div>
+    <button class="cart-checkout" onclick="showToast('🎉 Checkout coming soon!')">Checkout →</button>
+  </div>
+</aside>
+
+<!-- PAGE HERO -->
+<div class="page-hero">
+  <div class="breadcrumb">
+    <a href="index.html">Home</a><span>/</span><span>Menu</span>
+  </div>
+  <h1>Our Menu ☕</h1>
+  <p>Explore our full range of artisan roasts, cold brews, and specialty blends.</p>
+</div>
+
+<!-- MENU PAGE -->
+<div class="page">
+  <div class="menu-page">
+    <div class="container">
+      <div class="menu-layout">
+
+        <!-- Sidebar -->
+        <aside class="menu-sidebar">
+          <div class="sidebar-title">Filter Products</div>
+
+          <div class="sidebar-section">
+            <h4>Category</h4>
+            <div class="check-list">
+              <label class="check-item"><input type="checkbox" checked/> <label>All Products (32)</label></label>
+              <label class="check-item"><input type="checkbox"/> <label>Espresso (10)</label></label>
+              <label class="check-item"><input type="checkbox"/> <label>Cold Brew (5)</label></label>
+              <label class="check-item"><input type="checkbox"/> <label>Whole Bean (8)</label></label>
+              <label class="check-item"><input type="checkbox"/> <label>Flavored (6)</label></label>
+              <label class="check-item"><input type="checkbox"/> <label>Gift Sets (3)</label></label>
+            </div>
+          </div>
+
+          <div class="sidebar-section">
+            <h4>Roast Level</h4>
+            <div class="check-list">
+              <label class="check-item"><input type="checkbox"/> <label>Light Roast</label></label>
+              <label class="check-item"><input type="checkbox"/> <label>Medium Roast</label></label>
+              <label class="check-item"><input type="checkbox" checked/> <label>Dark Roast</label></label>
+              <label class="check-item"><input type="checkbox"/> <label>Extra Dark</label></label>
+            </div>
+          </div>
+
+          <div class="sidebar-section">
+            <h4>Price Range</h4>
+            <input type="range" class="price-range" min="100" max="3000" value="2000"
+              oninput="document.getElementById('priceVal').textContent='₱'+this.value"/>
+            <div class="price-vals"><span>₱100</span><span id="priceVal">₱2,000</span></div>
+          </div>
+
+          <div class="sidebar-section">
+            <h4>Origin</h4>
+            <div class="check-list">
+              <label class="check-item"><input type="checkbox" checked/> <label>Ethiopia</label></label>
+              <label class="check-item"><input type="checkbox" checked/> <label>Colombia</label></label>
+              <label class="check-item"><input type="checkbox"/> <label>Brazil</label></label>
+              <label class="check-item"><input type="checkbox"/> <label>Vietnam</label></label>
+              <label class="check-item"><input type="checkbox"/> <label>Arabia</label></label>
+            </div>
+          </div>
+
+          <button class="btn btn-brown" style="width:100%;margin-top:4px" onclick="showToast('Filters applied!')">Apply Filters</button>
+        </aside>
+
+        <!-- Main content -->
+        <div class="menu-main">
+
+          <!-- Hot Drinks -->
+          <div class="menu-section-ttl"><span class="icon">🔥</span> Hot Drinks</div>
+          <div class="menu-items-grid" id="productsGrid">
+            <!-- Rendered by JS -->
+          </div>
+
+          <!-- Cold Drinks -->
+          <div class="menu-section-ttl"><span class="icon">🧊</span> Cold Brew & Iced</div>
+          <div class="menu-items-grid">
+            <div class="prod-card reveal">
+              <div class="prod-img">
+                <input type="file" accept="image/*" class="file-input"/>
+                <div class="prod-placeholder"><span style="font-size:2.8rem">🧊</span><span style="font-size:.65rem;color:var(--brown-mid)">📁 Upload Image</span></div>
+              </div>
+              <div class="prod-info">
+                <div class="brand">Cold Brew</div>
+                <h3>Midnight Cold Brew</h3>
+                <div class="rating"><span class="stars">★★★★★</span><span class="count">(88)</span></div>
+                <div class="prod-price-row">
+                  <div class="prod-price"><div class="price-new">₱22.00</div></div>
+                  <button class="add-to-cart-btn" onclick="addToCart(7);this.textContent='✓';this.classList.add('added');setTimeout(()=>{this.textContent='+ Cart';this.classList.remove('added')},1500)">+ Cart</button>
+                </div>
+              </div>
+            </div>
+            <div class="prod-card reveal">
+              <div class="prod-img">
+                <input type="file" accept="image/*" class="file-input"/>
+                <div class="prod-placeholder"><span style="font-size:2.8rem">🍵</span><span style="font-size:.65rem;color:var(--brown-mid)">📁 Upload Image</span></div>
+              </div>
+              <div class="prod-info">
+                <div class="brand">Iced</div>
+                <h3>Iced Hazelnut Latte</h3>
+                <div class="rating"><span class="stars">★★★★☆</span><span class="count">(64)</span></div>
+                <div class="prod-price-row">
+                  <div class="prod-price"><div class="price-new">₱18.00</div></div>
+                  <button class="add-to-cart-btn" onclick="addToCart(8);this.textContent='✓';this.classList.add('added');setTimeout(()=>{this.textContent='+ Cart';this.classList.remove('added')},1500)">+ Cart</button>
+                </div>
+              </div>
+            </div>
+            <div class="prod-card reveal">
+              <div class="prod-img">
+                <input type="file" accept="image/*" class="file-input"/>
+                <div class="prod-placeholder"><span style="font-size:2.8rem">🥛</span><span style="font-size:.65rem;color:var(--brown-mid)">📁 Upload Image</span></div>
+              </div>
+              <div class="prod-info">
+                <div class="brand">Iced</div>
+                <h3>Salted Caramel Frap</h3>
+                <div class="rating"><span class="stars">★★★★★</span><span class="count">(127)</span></div>
+                <div class="prod-price-row">
+                  <div class="prod-price"><div class="price-new">₱20.50</div><div class="price-old">₱25.00</div></div>
+                  <button class="add-to-cart-btn" onclick="showToast('Added! ✓');this.textContent='✓';this.classList.add('added');setTimeout(()=>{this.textContent='+ Cart';this.classList.remove('added')},1500)">+ Cart</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Beans & Kits -->
+          <div class="menu-section-ttl"><span class="icon">🎁</span> Beans & Gift Sets</div>
+          <div class="menu-items-grid">
+            <div class="prod-card reveal">
+              <div class="prod-img">
+                <input type="file" accept="image/*" class="file-input"/>
+                <div class="prod-placeholder"><span style="font-size:2.8rem">🎁</span><span style="font-size:.65rem;color:var(--brown-mid)">📁 Upload Image</span></div>
+                <div class="prod-tags"><span class="badge badge-red">Sale</span></div>
+              </div>
+              <div class="prod-info">
+                <div class="brand">Gift Set</div>
+                <h3>Starter Gift Bundle</h3>
+                <div class="rating"><span class="stars">★★★★★</span><span class="count">(45)</span></div>
+                <div class="prod-price-row">
+                  <div class="prod-price"><div class="price-new">₱49.99</div><div class="price-old">₱65.00</div></div>
+                  <button class="add-to-cart-btn" onclick="showToast('Gift Bundle added! 🎁');this.textContent='✓';this.classList.add('added');setTimeout(()=>{this.textContent='+ Cart';this.classList.remove('added')},1500)">+ Cart</button>
+                </div>
+              </div>
+            </div>
+            <div class="prod-card reveal">
+              <div class="prod-img">
+                <input type="file" accept="image/*" class="file-input"/>
+                <div class="prod-placeholder"><span style="font-size:2.8rem">☕</span><span style="font-size:.65rem;color:var(--brown-mid)">📁 Upload Image</span></div>
+              </div>
+              <div class="prod-info">
+                <div class="brand">Brew Kit</div>
+                <h3>Pour Over Starter Kit</h3>
+                <div class="rating"><span class="stars">★★★★☆</span><span class="count">(38)</span></div>
+                <div class="prod-price-row">
+                  <div class="prod-price"><div class="price-new">₱35.00</div></div>
+                  <button class="add-to-cart-btn" onclick="showToast('Kit added! ☕');this.textContent='✓';this.classList.add('added');setTimeout(()=>{this.textContent='+ Cart';this.classList.remove('added')},1500)">+ Cart</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div><!-- /menu-main -->
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div style="font-family:'Playfair Display',serif;font-size:1.2rem;color:var(--cream);display:flex;align-items:center;gap:10px;margin-bottom:12px">
+        <div class="logo-mark" style="width:34px;height:34px;background:var(--gold);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1rem">☕</div>
+        Brew Pod <em style="color:var(--gold2);font-style:italic">&nbsp;&</em>&nbsp;Co.
+      </div>
+      <p>Artisan coffee roasted with love. From farm to cup — every sip tells a story.</p>
+      <div class="socials" style="margin-top:16px;display:flex;gap:8px">
+        <a href="#">📘</a><a href="#">📸</a><a href="#">🎵</a><a href="#">🛍️</a>
+      </div>
+    </div>
+    <div class="footer-col"><h4>Shop</h4><a href="menu.html">All Products</a><a href="menu.html">Espresso</a><a href="menu.html">Cold Brew</a><a href="menu.html">Gift Sets</a></div>
+    <div class="footer-col"><h4>Visit</h4><a href="reserve.html">Reserve Table</a><a href="about.html">Our Story</a><a href="#">Events</a><a href="#">Catering</a></div>
+    <div class="footer-col"><h4>Help</h4><a href="#">Track Order</a><a href="#">Returns</a><a href="#">FAQs</a><a href="#">Contact</a></div>
+  </div>
+  <div class="footer-bottom container"><span>© 2025 Brew Pod & Co.</span><a href="#">Privacy Policy</a></div>
+</footer>
+
+<button class="chat-fab" id="chatFab">💬<span class="notif-dot"></span></button>
+<div class="chat-panel" id="chatPanel">
+  <div class="chat-panel-head">
+    <div class="chat-avatar">☕</div>
+    <div class="info"><h4>Brew Pod Support</h4><p><span class="online-dot"></span>Usually replies in minutes</p></div>
+  </div>
+  <div class="chat-messages" id="chatMessages">
+    <div class="msg owner">Hi! Looking for a specific blend? I can help you find the perfect coffee! ☕<div class="msg-time">Now</div></div>
+  </div>
+  <div class="chat-input-row">
+    <input type="text" id="chatInput" class="chat-input" placeholder="Ask about our products…"/>
+    <button class="chat-send" id="chatSend">➤</button>
+  </div>
+</div>
+<div class="toast-wrap" id="toastWrap"></div>
+<script src="js/main.js"></script>
+</body>
+</html>

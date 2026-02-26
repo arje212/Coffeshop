@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>About Us — Brew Pod Coffee House</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>☕</text></svg>"/>
+  <link rel="stylesheet" href="vars.css"/>
+  <link rel="stylesheet" href="nav.css"/>
+  <link rel="stylesheet" href="pages.css"/>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar" id="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">
+      <div class="logo-mark">☕</div>
+      Brew Pod <em>&nbsp;&</em>&nbsp;Co.
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="menu.html">Menu</a></li>
+      <li><a href="reserve.html">Reserve</a></li>
+      <li><a href="about.html" class="active">About</a></li>
+    </ul>
+    <div class="nav-right">
+      <button class="nav-icon-btn" id="cartBtn">🛒 <span class="cart-badge">0</span></button>
+      <button class="nav-reserve-btn" onclick="location.href='reserve.html'">Reserve a Table</button>
+      <button class="nav-burger" id="burgerBtn"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</nav>
+<div class="nav-drawer" id="navDrawer">
+  <a href="index.html">🏠 Home</a><a href="menu.html">☕ Menu</a>
+  <a href="reserve.html">📅 Reserve</a><a href="about.html">ℹ️ About</a>
+</div>
+<div class="overlay" id="overlay"></div>
+<aside class="cart-sidebar" id="cartSidebar">
+  <div class="cart-head"><h2>🛒 Your Cart</h2><button class="cart-close" id="cartClose">✕</button></div>
+  <div class="cart-body" id="cartBody"></div>
+  <div class="cart-foot" id="cartFoot" style="display:none">
+    <div class="cart-subtotal"><span>Subtotal</span><span id="cartSubtotal">₱0.00</span></div>
+    <div class="cart-note">🚚 Free delivery above ₱500</div>
+    <button class="cart-checkout" onclick="showToast('Checkout coming soon!')">Checkout →</button>
+  </div>
+</aside>
+
+<!-- PAGE HERO -->
+<div class="page-hero">
+  <div class="breadcrumb"><a href="index.html">Home</a><span>/</span><span>About</span></div>
+  <h1>Our Story ☕</h1>
+  <p>From a small roastery in 1993 to your favorite neighborhood coffee house.</p>
+</div>
+
+<!-- ABOUT PAGE -->
+<div class="page">
+  <div class="about-page">
+    <div class="container">
+
+      <!-- Story section -->
+      <div class="about-story">
+        <div class="about-img-wrap" onclick="document.getElementById('storyImg').click()">
+          <input type="file" id="storyImg" accept="image/*" class="file-input" style="display:none" onchange="loadAboutImg(this, this.closest('.about-img-wrap'))"/>
+          <span style="font-size:4rem;color:var(--cream2)">☕</span>
+          <div style="position:absolute;bottom:14px;font-size:.7rem;color:var(--brown-mid)">📁 Click to upload your cafe photo</div>
+        </div>
+        <div class="about-text">
+          <span class="sec-eye eyebrow">Our Story</span>
+          <h2>Brewed with Passion Since 1993</h2>
+          <p>What started as a single roaster in a small Manila apartment has grown into one of the Philippines' most beloved specialty coffee brands. Our founder, Carlos Reyes, believed that great coffee shouldn't be a luxury — it should be an everyday ritual.</p>
+          <p>We source our beans directly from partner farms in Ethiopia, Colombia, Arabia, and the Philippines. Every bag is roasted in small batches to preserve the unique character of each origin.</p>
+          <p>Today, Brew Pod serves thousands of coffee lovers every week — both through our cozy cafe and our online store. But our mission remains the same: one perfect cup at a time.</p>
+          <div class="about-values">
+            <div class="value-item">
+              <span class="value-icon">🌍</span>
+              <div><h4>Ethically Sourced</h4><p>Direct trade with farmers. Fair wages, sustainable practices.</p></div>
+            </div>
+            <div class="value-item">
+              <span class="value-icon">🔥</span>
+              <div><h4>Small Batch Roasted</h4><p>Roasted fresh weekly for peak flavor and aroma.</p></div>
+            </div>
+            <div class="value-item">
+              <span class="value-icon">💚</span>
+              <div><h4>Eco-Friendly</h4><p>Biodegradable packaging, zero-waste roastery.</p></div>
+            </div>
+            <div class="value-item">
+              <span class="value-icon">❤️</span>
+              <div><h4>Community First</h4><p>10% of profits support local farming communities.</p></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Stats -->
+      <div style="background:var(--brown);border-radius:var(--radius-lg);padding:52px 48px;display:grid;grid-template-columns:repeat(4,1fr);gap:24px;text-align:center;margin-bottom:80px" class="reveal">
+        <div>
+          <div style="font-family:var(--font-display);font-size:2.5rem;font-weight:900;color:var(--gold)">30+</div>
+          <div style="font-size:.8rem;color:rgba(246,237,217,.5);text-transform:uppercase;letter-spacing:.1em;margin-top:4px">Years of Coffee</div>
+        </div>
+        <div>
+          <div style="font-family:var(--font-display);font-size:2.5rem;font-weight:900;color:var(--gold)">50+</div>
+          <div style="font-size:.8rem;color:rgba(246,237,217,.5);text-transform:uppercase;letter-spacing:.1em;margin-top:4px">Unique Blends</div>
+        </div>
+        <div>
+          <div style="font-family:var(--font-display);font-size:2.5rem;font-weight:900;color:var(--gold)">12K+</div>
+          <div style="font-size:.8rem;color:rgba(246,237,217,.5);text-transform:uppercase;letter-spacing:.1em;margin-top:4px">Happy Customers</div>
+        </div>
+        <div>
+          <div style="font-family:var(--font-display);font-size:2.5rem;font-weight:900;color:var(--gold)">8</div>
+          <div style="font-size:.8rem;color:rgba(246,237,217,.5);text-transform:uppercase;letter-spacing:.1em;margin-top:4px">Farm Partners</div>
+        </div>
+      </div>
+
+      <!-- Team -->
+      <div class="team-section reveal">
+        <div class="sec-head">
+          <span class="sec-eye">The Team</span>
+          <h2 class="sec-title">The People Behind the Cup</h2>
+        </div>
+        <div class="team-grid">
+          <div class="team-card">
+            <div class="team-img" onclick="this.querySelector('input').click()">
+              <input type="file" accept="image/*" class="file-input" style="display:none" onchange="loadAboutImg(this,this.closest('.team-img'))"/>
+              👨
+            </div>
+            <h4>Carlos Reyes</h4>
+            <span>Founder & Head Roaster</span>
+          </div>
+          <div class="team-card">
+            <div class="team-img" onclick="this.querySelector('input').click()">
+              <input type="file" accept="image/*" class="file-input" style="display:none" onchange="loadAboutImg(this,this.closest('.team-img'))"/>
+              👩
+            </div>
+            <h4>Maria Santos</h4>
+            <span>Café Manager</span>
+          </div>
+          <div class="team-card">
+            <div class="team-img" onclick="this.querySelector('input').click()">
+              <input type="file" accept="image/*" class="file-input" style="display:none" onchange="loadAboutImg(this,this.closest('.team-img'))"/>
+              👨‍🍳
+            </div>
+            <h4>Diego Lim</h4>
+            <span>Head Barista</span>
+          </div>
+          <div class="team-card">
+            <div class="team-img" onclick="this.querySelector('input').click()">
+              <input type="file" accept="image/*" class="file-input" style="display:none" onchange="loadAboutImg(this,this.closest('.team-img'))"/>
+              👩‍💼
+            </div>
+            <h4>Ana Cruz</h4>
+            <span>Operations Director</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- FAQ -->
+      <div class="faq-section reveal" style="margin-bottom:0">
+        <div class="sec-head">
+          <span class="sec-eye">Got Questions?</span>
+          <h2 class="sec-title">Frequently Asked Questions</h2>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">Where are your beans sourced from? <span>+</span></div>
+          <div class="faq-a"><p>We partner directly with farms in Ethiopia, Colombia, Arabia, Brazil, and locally in the Benguet region of the Philippines. All farms are certified fair-trade and use sustainable practices.</p></div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">How fresh are your roasts? <span>+</span></div>
+          <div class="faq-a"><p>We roast in small batches every Tuesday and Friday. Online orders ship within 48 hours of roasting to ensure peak freshness. Each bag is stamped with the roast date.</p></div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">Do you offer wholesale or bulk orders? <span>+</span></div>
+          <div class="faq-a"><p>Yes! We supply cafes, offices, hotels, and events. Contact us at wholesale@brewpod.ph for pricing and minimum order quantities.</p></div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">Can I customize my order? <span>+</span></div>
+          <div class="faq-a"><p>Absolutely! We offer custom grind levels (whole bean, coarse, medium, fine, espresso) and can create custom gift sets and private label products for corporate clients.</p></div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">What is your return/refund policy? <span>+</span></div>
+          <div class="faq-a"><p>We offer a full refund or replacement within 7 days if you're not satisfied with your purchase. Just send us a message with your order number and we'll sort it out immediately.</p></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- CTA SECTION -->
+<div style="background:var(--brown);padding:72px 0;text-align:center">
+  <div class="container">
+    <span class="sec-eye" style="color:var(--gold2)">Ready to try us?</span>
+    <h2 style="font-family:var(--font-display);font-size:clamp(1.8rem,4vw,2.8rem);color:var(--cream);margin:12px 0 16px">Order Online or Visit Our Cafe</h2>
+    <p style="color:rgba(246,237,217,.55);max-width:400px;margin:0 auto 32px;font-size:.95rem;line-height:1.7">Experience the difference that real craft roasting makes. Every cup, a ceremony.</p>
+    <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap">
+      <a href="menu.html" class="btn btn-gold btn-lg">Shop Now ☕</a>
+      <a href="reserve.html" class="btn btn-ghost btn-lg">Reserve a Table</a>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div style="font-family:'Playfair Display',serif;font-size:1.2rem;color:var(--cream);display:flex;align-items:center;gap:10px;margin-bottom:12px">
+        <div style="width:34px;height:34px;background:var(--gold);border-radius:50%;display:flex;align-items:center;justify-content:center">☕</div>
+        Brew Pod <em style="color:var(--gold2);font-style:italic">&nbsp;&</em>&nbsp;Co.
+      </div>
+      <p>Artisan coffee roasted with love. From farm to cup.</p>
+      <div class="socials" style="margin-top:16px;display:flex;gap:8px"><a href="#">📘</a><a href="#">📸</a><a href="#">🎵</a><a href="#">🛍️</a></div>
+    </div>
+    <div class="footer-col"><h4>Shop</h4><a href="menu.html">All Products</a><a href="menu.html">Espresso</a><a href="menu.html">Cold Brew</a></div>
+    <div class="footer-col"><h4>Visit</h4><a href="reserve.html">Reserve Table</a><a href="about.html">Our Story</a><a href="#">Events</a></div>
+    <div class="footer-col"><h4>Help</h4><a href="#">Track Order</a><a href="#">FAQs</a><a href="#">Contact</a></div>
+  </div>
+  <div class="footer-bottom container"><span>© 2025 Brew Pod & Co.</span><a href="#">Privacy Policy</a></div>
+</footer>
+
+<button class="chat-fab" id="chatFab">💬<span class="notif-dot"></span></button>
+<div class="chat-panel" id="chatPanel">
+  <div class="chat-panel-head">
+    <div class="chat-avatar">☕</div>
+    <div class="info"><h4>Brew Pod Support</h4><p><span class="online-dot"></span>Usually replies in minutes</p></div>
+  </div>
+  <div class="chat-messages" id="chatMessages">
+    <div class="msg owner">Hi! Want to know more about Brew Pod? Ask away! ☕<div class="msg-time">Now</div></div>
+  </div>
+  <div class="chat-input-row">
+    <input type="text" id="chatInput" class="chat-input" placeholder="Ask us anything…"/>
+    <button class="chat-send" id="chatSend">➤</button>
+  </div>
+</div>
+<div class="toast-wrap" id="toastWrap"></div>
+<script src="js/main.js"></script>
+<script>
+function loadAboutImg(input, container) {
+  const file = input.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = e => {
+    let img = container.querySelector('img');
+    if (!img) { img = document.createElement('img'); container.appendChild(img); }
+    img.src = e.target.result;
+    container.style.fontSize = '0';
+    const hint = container.querySelector('div');
+    if (hint) hint.style.display = 'none';
+  };
+  reader.readAsDataURL(file);
+}
+</script>
+</body>
+</html>

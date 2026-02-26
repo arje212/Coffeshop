@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Reserve a Table — Brew Pod Coffee House</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>☕</text></svg>"/>
+  <link rel="stylesheet" href="vars.css"/>
+  <link rel="stylesheet" href="nav.css"/>
+  <link rel="stylesheet" href="pages.css"/>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar" id="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">
+      <div class="logo-mark">☕</div>
+      Brew Pod <em>&nbsp;&</em>&nbsp;Co.
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="menu.html">Menu</a></li>
+      <li><a href="reserve.html" class="active">Reserve</a></li>
+      <li><a href="about.html">About</a></li>
+    </ul>
+    <div class="nav-right">
+      <button class="nav-icon-btn" id="cartBtn">🛒 <span class="cart-badge">0</span></button>
+      <button class="nav-reserve-btn" onclick="document.getElementById('reserveForm').scrollIntoView({behavior:'smooth'})">Book Now</button>
+      <button class="nav-burger" id="burgerBtn"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</nav>
+<div class="nav-drawer" id="navDrawer">
+  <a href="index.html">🏠 Home</a><a href="menu.html">☕ Menu</a>
+  <a href="reserve.html">📅 Reserve</a><a href="about.html">ℹ️ About</a>
+</div>
+<div class="overlay" id="overlay"></div>
+<aside class="cart-sidebar" id="cartSidebar">
+  <div class="cart-head"><h2>🛒 Your Cart</h2><button class="cart-close" id="cartClose">✕</button></div>
+  <div class="cart-body" id="cartBody"></div>
+  <div class="cart-foot" id="cartFoot" style="display:none">
+    <div class="cart-subtotal"><span>Subtotal</span><span id="cartSubtotal">₱0.00</span></div>
+    <div class="cart-note">🚚 Free delivery above ₱500</div>
+    <button class="cart-checkout" onclick="showToast('Checkout coming soon!')">Checkout →</button>
+  </div>
+</aside>
+
+<!-- PAGE HERO -->
+<div class="page-hero">
+  <div class="breadcrumb"><a href="index.html">Home</a><span>/</span><span>Reserve</span></div>
+  <h1>Reserve a Table 📅</h1>
+  <p>Book your perfect coffee moment. We'll have everything ready for your arrival.</p>
+</div>
+
+<!-- RESERVE PAGE -->
+<div class="page">
+  <div class="reserve-page">
+    <div class="container">
+      <div class="reserve-layout">
+
+        <!-- Form -->
+        <div>
+          <div class="reserve-form-card">
+            <h2>Make a Reservation</h2>
+
+            <!-- Success state -->
+            <div id="reserveSuccess" class="reserve-success">
+              <div class="success-icon">🎉</div>
+              <h3>Reservation Confirmed!</h3>
+              <p>We've received your booking. A confirmation will be sent to your email. We look forward to seeing you!</p>
+              <br/>
+              <button class="btn btn-brown" onclick="document.getElementById('reserveSuccess').classList.remove('show');document.getElementById('reserveForm').style.display=''">Make Another Reservation</button>
+            </div>
+
+            <form id="reserveForm">
+              <div class="form-row">
+                <div class="form-group">
+                  <label>First Name</label>
+                  <input type="text" placeholder="Juan" required/>
+                </div>
+                <div class="form-group">
+                  <label>Last Name</label>
+                  <input type="text" placeholder="dela Cruz" required/>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group">
+                  <label>Email</label>
+                  <input type="email" placeholder="juan@email.com" required/>
+                </div>
+                <div class="form-group">
+                  <label>Phone Number</label>
+                  <input type="tel" placeholder="+63 912 345 6789" required/>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group">
+                  <label>Date</label>
+                  <input type="date" required/>
+                </div>
+                <div class="form-group">
+                  <label>Time</label>
+                  <select required>
+                    <option value="" disabled selected>Select a time</option>
+                    <option>7:00 AM</option>
+                    <option>8:00 AM</option>
+                    <option>9:00 AM</option>
+                    <option>10:00 AM</option>
+                    <option>11:00 AM</option>
+                    <option>12:00 PM</option>
+                    <option>1:00 PM</option>
+                    <option>2:00 PM</option>
+                    <option>3:00 PM</option>
+                    <option>4:00 PM</option>
+                    <option>5:00 PM</option>
+                    <option>6:00 PM</option>
+                    <option>7:00 PM</option>
+                    <option>8:00 PM</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group">
+                  <label>Number of Guests</label>
+                  <select required>
+                    <option>1 person</option>
+                    <option>2 persons</option>
+                    <option selected>3–4 persons</option>
+                    <option>5–6 persons</option>
+                    <option>7–10 persons</option>
+                    <option>10+ persons (Private Event)</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label>Seating Preference</label>
+                  <select>
+                    <option>Indoor</option>
+                    <option>Outdoor Terrace</option>
+                    <option>Window Seat</option>
+                    <option>Private Booth</option>
+                    <option>No Preference</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-group" style="margin-bottom:16px">
+                <label>Occasion (optional)</label>
+                <div class="occasion-grid">
+                  <button type="button" class="occ-btn">🎂 Birthday</button>
+                  <button type="button" class="occ-btn">💑 Anniversary</button>
+                  <button type="button" class="occ-btn">💼 Business</button>
+                  <button type="button" class="occ-btn on">☕ Casual</button>
+                  <button type="button" class="occ-btn">🎓 Graduation</button>
+                  <button type="button" class="occ-btn">🎉 Celebration</button>
+                </div>
+              </div>
+
+              <div class="form-row full">
+                <div class="form-group">
+                  <label>Special Requests</label>
+                  <textarea placeholder="Allergies, dietary requirements, special arrangements, cake preferences…"></textarea>
+                </div>
+              </div>
+
+              <button type="submit" class="reserve-submit">Confirm Reservation 📅</button>
+            </form>
+          </div>
+        </div>
+
+        <!-- Info card -->
+        <div>
+          <div class="reserve-info-card">
+            <h3>📍 Visit Information</h3>
+
+            <div class="info-row">
+              <div class="info-icon">📍</div>
+              <div>
+                <h4>Location</h4>
+                <p>123 Brew Street, Poblacion<br/>Makati City, Metro Manila</p>
+              </div>
+            </div>
+            <div class="info-row">
+              <div class="info-icon">🕐</div>
+              <div>
+                <h4>Opening Hours</h4>
+                <p>Monday – Saturday: 7:00 AM – 9:00 PM<br/>Sunday: 8:00 AM – 7:00 PM</p>
+              </div>
+            </div>
+            <div class="info-row">
+              <div class="info-icon">📞</div>
+              <div>
+                <h4>Contact</h4>
+                <p>+63 912 345 6789<br/>hello@brewpod.ph</p>
+              </div>
+            </div>
+            <div class="info-row">
+              <div class="info-icon">🅿️</div>
+              <div>
+                <h4>Parking</h4>
+                <p>Free parking for up to 2 hours for dine-in guests.</p>
+              </div>
+            </div>
+            <div class="info-row">
+              <div class="info-icon">ℹ️</div>
+              <div>
+                <h4>Policy</h4>
+                <p>Tables held for 15 minutes past reservation time. Please call if running late.</p>
+              </div>
+            </div>
+
+            <div class="reserve-map" onclick="showToast('Map integration coming with backend!')">
+              🗺️ Click to View on Google Maps
+            </div>
+          </div>
+
+          <!-- Quick add to order -->
+          <div style="background:var(--white);border-radius:var(--radius-lg);padding:24px;margin-top:20px;border:1.5px solid var(--cream2)">
+            <h4 style="font-family:var(--font-display);font-size:1rem;margin-bottom:16px">Pre-order with your reservation</h4>
+            <div style="display:flex;flex-direction:column;gap:10px">
+              <div style="display:flex;align-items:center;justify-content:space-between;font-size:.85rem">
+                <span>☕ Arabian Espresso</span>
+                <button class="btn btn-outline btn-sm" onclick="addToCart(1);showToast('Pre-ordered!')">Add ₱19.56</button>
+              </div>
+              <div style="display:flex;align-items:center;justify-content:space-between;font-size:.85rem">
+                <span>🫘 Viciila Premium</span>
+                <button class="btn btn-outline btn-sm" onclick="addToCart(2);showToast('Pre-ordered!')">Add ₱19.56</button>
+              </div>
+              <div style="display:flex;align-items:center;justify-content:space-between;font-size:.85rem">
+                <span>✨ Golden Reserve</span>
+                <button class="btn btn-outline btn-sm" onclick="addToCart(4);showToast('Pre-ordered!')">Add ₱24.99</button>
+              </div>
+              <div style="display:flex;align-items:center;justify-content:space-between;font-size:.85rem">
+                <span>🧊 Cold Brew Kit</span>
+                <button class="btn btn-outline btn-sm" onclick="addToCart(7);showToast('Pre-ordered!')">Add ₱28.00</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div style="font-family:'Playfair Display',serif;font-size:1.2rem;color:var(--cream);display:flex;align-items:center;gap:10px;margin-bottom:12px">
+        <div style="width:34px;height:34px;background:var(--gold);border-radius:50%;display:flex;align-items:center;justify-content:center">☕</div>
+        Brew Pod <em style="color:var(--gold2);font-style:italic">&nbsp;&</em>&nbsp;Co.
+      </div>
+      <p>Artisan coffee roasted with love. From farm to cup.</p>
+      <div class="socials" style="margin-top:16px;display:flex;gap:8px"><a href="#">📘</a><a href="#">📸</a><a href="#">🎵</a><a href="#">🛍️</a></div>
+    </div>
+    <div class="footer-col"><h4>Shop</h4><a href="menu.html">All Products</a><a href="menu.html">Espresso</a><a href="menu.html">Cold Brew</a></div>
+    <div class="footer-col"><h4>Visit</h4><a href="reserve.html">Reserve Table</a><a href="about.html">Our Story</a><a href="#">Events</a></div>
+    <div class="footer-col"><h4>Help</h4><a href="#">Track Order</a><a href="#">FAQs</a><a href="#">Contact</a></div>
+  </div>
+  <div class="footer-bottom container"><span>© 2025 Brew Pod & Co.</span><a href="#">Privacy Policy</a></div>
+</footer>
+
+<button class="chat-fab" id="chatFab">💬<span class="notif-dot"></span></button>
+<div class="chat-panel" id="chatPanel">
+  <div class="chat-panel-head">
+    <div class="chat-avatar">☕</div>
+    <div class="info"><h4>Brew Pod Support</h4><p><span class="online-dot"></span>Usually replies in minutes</p></div>
+  </div>
+  <div class="chat-messages" id="chatMessages">
+    <div class="msg owner">Hi! Need help with your reservation? I'm here! 📅<div class="msg-time">Now</div></div>
+  </div>
+  <div class="chat-input-row">
+    <input type="text" id="chatInput" class="chat-input" placeholder="Ask anything…"/>
+    <button class="chat-send" id="chatSend">➤</button>
+  </div>
+</div>
+<div class="toast-wrap" id="toastWrap"></div>
+<script src="js/main.js"></script>
+</body>
+</html>
