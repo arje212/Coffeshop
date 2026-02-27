@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Brew Pod Coffee House — Artisan roasted single-origin coffee. Order online, reserve a table."/>
+  <title>Brew Pod Coffee House — Home</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>☕</text></svg>"/>
+  <link rel="stylesheet" href="brewpod/style/vars.css"/>
+  <link rel="stylesheet" href="brewpod/style/nav.css"/>
+  <link rel="stylesheet" href="brewpod/style/home.css"/>
+</head>
+<body>
+
+<!-- ══════════ NAVBAR ══════════ -->
+<nav class="navbar" id="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">
+      <div class="logo-mark">☕</div>
+      Brew Pod <em>&nbsp;&</em>&nbsp;Co.
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="com/menu.html">Menu</a></li>
+      <li><a href="com/reserve.html">Reserve</a></li>
+      <li><a href="com/about.html">About</a></li>
+    </ul>
+    <div class="nav-right">
+      <button class="nav-icon-btn" id="cartBtn" title="Cart">
+        🛒 <span class="cart-badge">0</span>
+      </button>
+      <button class="nav-reserve-btn" onclick="location.href='reserve.html'">Reserve a Table</button>
+      <button class="nav-burger nav-icon-btn" id="burgerBtn" style="background:transparent;width:auto;padding:0 8px;border-radius:8px;">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- Mobile drawer -->
+<div class="nav-drawer" id="navDrawer">
+  <a href="index.html">🏠 Home</a>
+  <a href="brewpod/com/menu.html">☕ Menu</a>
+  <a href="brewpod/com/reserve.html">📅 Reserve</a>
+  <a href="brewpod/com/about.html">ℹ️ About</a>
+</div>
+
+<!-- Cart Sidebar -->
+<div class="overlay" id="overlay"></div>
+<aside class="cart-sidebar" id="cartSidebar">
+  <div class="cart-head">
+    <h2>🛒 Your Cart</h2>
+    <button class="cart-close" id="cartClose">✕</button>
+  </div>
+  <div class="cart-body" id="cartBody"></div>
+  <div class="cart-foot" id="cartFoot" style="display:none">
+    <div class="cart-subtotal">
+      <span>Subtotal</span>
+      <span id="cartSubtotal">₱0.00</span>
+    </div>
+    <div class="cart-note">🚚 Free delivery on orders above ₱500</div>
+    <button class="cart-checkout" onclick="showToast('🎉 Checkout coming soon! Backend in progress.')">Checkout →</button>
+  </div>
+</aside>
+
+<!-- ══════════ HERO ══════════ -->
+<section class="hero">
+  <div class="hero-bg-word">COFFEE</div>
+  <div class="hero-inner">
+    <div class="hero-left">
+      <div class="hero-label">Est. 1993 · Artisan Roasted</div>
+      <h1 class="hero-h1">
+        The Perfect Cup<br/>
+        <em>Starts Here.</em>
+      </h1>
+      <p class="hero-p">Single-origin, small-batch roasted coffee delivered to your door or enjoyed fresh at our cafe. Every sip is a ceremony.</p>
+      <div class="hero-actions">
+        <a href="brewpod/com/menu.html" class="btn btn-gold btn-lg">Shop Now ☕</a>
+        <a href="brewpod/com/reserve.html" class="btn btn-ghost">Reserve a Table</a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat-item"><span class="num">50+</span><span class="lbl">Blends</span></div>
+        <div class="stat-item"><span class="num">12K+</span><span class="lbl">Happy Customers</span></div>
+        <div class="stat-item"><span class="num">4.9★</span><span class="lbl">Average Rating</span></div>
+      </div>
+    </div>
+
+    <div class="hero-right">
+      <div class="hero-showcase">
+        <div class="showcase-main">
+          <div class="showcase-img" id="heroSlot" onclick="document.getElementById('heroImgInput').click()">
+            <input type="file" id="heroImgInput" accept="image/*" class="file-input" style="display:none"/>
+            <div class="upload-icon">☕</div>
+            <span class="upload-txt">📁 Click to upload featured product image</span>
+          </div>
+          <div class="showcase-info">
+            <h3>Arabian Espresso</h3>
+            <span class="showcase-price">₱19.56</span>
+          </div>
+          <button class="showcase-cta" onclick="addToCart(1)">Add to Cart 🛒</button>
+        </div>
+        <div class="showcase-cards">
+          <div class="showcase-mini" onclick="addToCart(2)">
+            <div class="mini-img" id="mini1">🫘</div>
+            <h4>Viciila Premium</h4>
+            <p>₱19.56</p>
+          </div>
+          <div class="showcase-mini" onclick="addToCart(4)">
+            <div class="mini-img" id="mini2">✨</div>
+            <h4>Golden Reserve</h4>
+            <p>₱24.99</p>
+          </div>
+          <div class="showcase-mini" onclick="addToCart(3)">
+            <div class="mini-img" id="mini3">🍫</div>
+            <h4>Cacilla Dark</h4>
+            <p>₱16.99</p>
+          </div>
+          <div class="showcase-mini" onclick="addToCart(7)">
+            <div class="mini-img" id="mini4">🧊</div>
+            <h4>Cold Brew Kit</h4>
+            <p>₱28.00</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ FEATURES STRIP ══════════ -->
+<div class="features-strip">
+  <div class="features-track">
+    <div class="feature-item"><span>☕</span> Single Origin Beans</div>
+    <div class="feature-item"><span>🚚</span> Free Delivery ₱500+</div>
+    <div class="feature-item"><span>🔥</span> Freshly Roasted Daily</div>
+    <div class="feature-item"><span>🌍</span> Ethically Sourced</div>
+    <div class="feature-item"><span>⭐</span> 4.9 Star Rating</div>
+    <div class="feature-item"><span>📦</span> Same-Day Shipping</div>
+    <div class="feature-item"><span>☕</span> Single Origin Beans</div>
+    <div class="feature-item"><span>🚚</span> Free Delivery ₱500+</div>
+    <div class="feature-item"><span>🔥</span> Freshly Roasted Daily</div>
+    <div class="feature-item"><span>🌍</span> Ethically Sourced</div>
+    <div class="feature-item"><span>⭐</span> 4.9 Star Rating</div>
+    <div class="feature-item"><span>📦</span> Same-Day Shipping</div>
+  </div>
+</div>
+
+<!-- ══════════ CATEGORIES ══════════ -->
+<section class="categories">
+  <div class="container">
+    <div class="sec-head">
+      <span class="sec-eye">Browse By Type</span>
+      <h2 class="sec-title">Find Your Perfect Blend</h2>
+    </div>
+    <div class="cat-grid">
+      <div class="cat-card active reveal" onclick="location.href='menu.html'">
+        <div class="cat-icon">☕</div>
+        <h4>Espresso</h4><p>10 products</p>
+      </div>
+      <div class="cat-card reveal" onclick="location.href='menu.html'">
+        <div class="cat-icon">🫘</div>
+        <h4>Whole Bean</h4><p>8 products</p>
+      </div>
+      <div class="cat-card reveal" onclick="location.href='menu.html'">
+        <div class="cat-icon">🧊</div>
+        <h4>Cold Brew</h4><p>5 products</p>
+      </div>
+      <div class="cat-card reveal" onclick="location.href='menu.html'">
+        <div class="cat-icon">🎁</div>
+        <h4>Gift Sets</h4><p>6 products</p>
+      </div>
+      <div class="cat-card reveal" onclick="location.href='menu.html'">
+        <div class="cat-icon">🌟</div>
+        <h4>Limited</h4><p>3 products</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ PRODUCTS ══════════ -->
+<section class="products-sec">
+  <div class="container">
+    <div class="sec-head">
+      <span class="sec-eye">Our Selection</span>
+      <h2 class="sec-title">Signature Blends</h2>
+    </div>
+    <div class="products-toolbar">
+      <div class="toolbar-left">
+        <button class="filter-btn on" onclick="filterProducts('all')">All</button>
+        <button class="filter-btn" onclick="filterProducts('espresso')">Espresso</button>
+        <button class="filter-btn" onclick="filterProducts('dark')">Dark Roast</button>
+        <button class="filter-btn" onclick="filterProducts('flavored')">Flavored</button>
+        <button class="filter-btn" onclick="filterProducts('special')">Limited</button>
+      </div>
+      <select class="sort-select" onchange="showToast('Sorting by: ' + this.options[this.selectedIndex].text)">
+        <option>Sort: Featured</option>
+        <option>Price: Low to High</option>
+        <option>Price: High to Low</option>
+        <option>Best Rated</option>
+        <option>Newest</option>
+      </select>
+    </div>
+    <div class="products-grid" id="productsGrid"></div>
+    <div style="text-align:center;margin-top:40px">
+      <a href="brewpod/com/menu.html" class="btn btn-brown btn-lg">View Full Menu →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ PROMO BANNER ══════════ -->
+<div class="container">
+  <div class="promo-banner reveal">
+    <div class="promo-text">
+      <span class="tag">⚡ Flash Sale — Today Only</span>
+      <h2>20% Off All Dark Roasts</h2>
+      <p>Use code <strong style="color:var(--gold2)">DARK20</strong> at checkout. Limited stocks only. Don't miss out!</p>
+      <a href="com/menu.html" class="btn btn-gold btn-lg">Shop the Sale</a>
+    </div>
+    <div class="promo-visual">
+      <div class="countdown">
+        <div class="cd-item"><span class="cd-num" data-cd="h">03</span><span class="cd-lbl">Hours</span></div>
+        <div class="cd-item"><span class="cd-num" data-cd="m">30</span><span class="cd-lbl">Mins</span></div>
+        <div class="cd-item"><span class="cd-num" data-cd="s">00</span><span class="cd-lbl">Secs</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════ TESTIMONIALS ══════════ -->
+<section class="testimonials">
+  <div class="container">
+    <div class="sec-head">
+      <span class="sec-eye">Reviews</span>
+      <h2 class="sec-title">What Our Customers Say</h2>
+    </div>
+    <div class="testi-grid">
+      <div class="testi-card reveal">
+        <div class="testi-quote">"</div>
+        <p>The Arabian Espresso is unlike anything I've tasted. Rich, complex, and absolutely perfect every single morning. My new daily ritual.</p>
+        <div class="testi-author">
+          <div class="testi-avatar">😊</div>
+          <div><h4>Maria Santos</h4><span>Regular Customer ⭐⭐⭐⭐⭐</span></div>
+        </div>
+      </div>
+      <div class="testi-card reveal">
+        <div class="testi-quote">"</div>
+        <p>Ordered the Golden Reserve as a gift. My friend loved it. The packaging is gorgeous and delivery was super fast. Will definitely order again!</p>
+        <div class="testi-author">
+          <div class="testi-avatar">🙂</div>
+          <div><h4>Juan dela Cruz</h4><span>Verified Buyer ⭐⭐⭐⭐⭐</span></div>
+        </div>
+      </div>
+      <div class="testi-card reveal">
+        <div class="testi-quote">"</div>
+        <p>Reserved a table for our anniversary. The atmosphere was cozy, staff was warm. The Velvet Mocha paired beautifully with their desserts!</p>
+        <div class="testi-author">
+          <div class="testi-avatar">😄</div>
+          <div><h4>Ana Reyes</h4><span>Dine-in Guest ⭐⭐⭐⭐⭐</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ FOOTER ══════════ -->
+<footer class="footer">
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="nav-logo" style="margin-bottom:14px;font-family:'Playfair Display',serif;font-size:1.3rem;color:var(--cream)">
+        <div class="logo-mark">☕</div> Brew Pod <em style="color:var(--gold2);font-style:italic">&nbsp;&</em>&nbsp;Co.
+      </div>
+      <p>Artisan coffee roasted with love. From our farm partners to your cup — every sip tells a story.</p>
+      <div class="socials">
+        <a href="#" title="Facebook">📘</a>
+        <a href="#" title="Instagram">📸</a>
+        <a href="#" title="TikTok">🎵</a>
+        <a href="#" title="Shopee">🛍️</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Shop</h4>
+      <a href="com/menu.html">All Products</a>
+      <a href="com/menu.html">Espresso</a>
+      <a href="com/menu.html">Cold Brew</a>
+      <a href="com/menu.html">Gift Sets</a>
+      <a href="com/menu.html">Limited Edition</a>
+    </div>
+    <div class="footer-col">
+      <h4>Visit Us</h4>
+      <a href="com/reserve.html">Reserve a Table</a>
+      <a href="com/about.html">Our Story</a>
+      <a href="com/about.html">Our Team</a>
+      <a href="#">Catering</a>
+      <a href="#">Events</a>
+    </div>
+    <div class="footer-col">
+      <h4>Help</h4>
+      <a href="#">Track Order</a>
+      <a href="#">Returns</a>
+      <a href="#">FAQs</a>
+      <a href="#">Contact Us</a>
+      <a href="#">Privacy Policy</a>
+    </div>
+  </div>
+  <div class="footer-bottom container">
+    <span>© 2025 Brew Pod & Co. All rights reserved.</span>
+    <div style="display:flex;gap:16px">
+      <a href="#">Terms</a>
+      <a href="#">Privacy</a>
+      <a href="#">Cookies</a>
+    </div>
+  </div>
+</footer>
+
+<!-- Chat FAB -->
+<button class="chat-fab" id="chatFab" title="Chat with us">
+  💬
+  <span class="notif-dot"></span>
+</button>
+<div class="chat-panel" id="chatPanel">
+  <div class="chat-panel-head">
+    <div class="chat-avatar">☕</div>
+    <div class="info">
+      <h4>Brew Pod Support</h4>
+      <p><span class="online-dot"></span>Usually replies in minutes</p>
+    </div>
+  </div>
+  <div class="chat-messages" id="chatMessages">
+    <div class="msg owner">
+      Hi there! 👋 Welcome to Brew Pod. How can I help you today?
+      <div class="msg-time">Now</div>
+    </div>
+  </div>
+  <div class="chat-input-row">
+    <input type="text" id="chatInput" class="chat-input" placeholder="Type a message…"/>
+    <button class="chat-send" id="chatSend">➤</button>
+  </div>
+</div>
+
+<div class="toast-wrap" id="toastWrap"></div>
+<script src="brewpod/js/main.js"></script>
+</body>
+</html>
